@@ -54,4 +54,11 @@ app.put('/api/events/:id', async (req, res, next) => {
     })
 })
 
+// Event deletion
+app.delete('/api/events/:id', async (req, res, next) => {
+  Event.findByIdAndDelete(req.params.id)
+    .then(() => res.sendStatus(200))
+    .catch(next)
+})
+
 app.listen(process.env.PORT, () => console.log(`Actulan backend listening on port ${process.env.PORT}`))
